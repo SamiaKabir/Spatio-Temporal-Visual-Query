@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<style type="text/css">
+html, body {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+} 
+#map {
+  width:980px;
+  height: 500px;
+}
+.SvgOverlay {
+  position: relative;
+  width: 900px;
+  height: 600px;           
+}
+.SvgOverlay svg {
+  position: absolute;
+  top: -4000px;
+  left: -4000px;
+  width: 8000px;
+  height: 8000px;        
+}
+</style>
+
+<head>
+
+	<meta charset='utf-8'>
+  	<script src='https://d3js.org/d3.v4.min.js'></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVhUnoEVW6VTFzPx8TZuCV_DpM82VbMQw"></script>
+  	<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
+  	<script src='https://cdnjs.cloudflare.com/ajax/libs/moment-duration-format/1.3.0/moment-duration-format.js'></script>
+  	<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js'></script>
+  <!-- 	<script src="https://maps.google.com/maps/api/js?sensor=true"></script> -->
+  	<script src='data_load.js'></script>
+    <script src='map_plot.js'></script>
+	<title>AAA</title>
+</head>
+<body>
+<p>ss</p>
+
+<div id="map"></div>
+</body>

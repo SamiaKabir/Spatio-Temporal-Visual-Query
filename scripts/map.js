@@ -98,7 +98,7 @@ console.log("draw data");
 //data=project_point(data);
             // Add circles
 //pick up points
-console.log(data)
+// console.log(data)
 
 // console.log(data2)
 
@@ -213,62 +213,76 @@ if(count==0)
 
 
 function load_data(){
-
-var date_sel = (+document.getElementById('dropdown').value)
+// var sss = (document.getElementById('bday').value)
+var date_sel = (+(document.getElementById('dropdown').value.substring(8,10)))
 var startTime = (+document.getElementById("dropdown1").value)
 var endTime = (+document.getElementById("dropdown2").value)
 console.log(date_sel,startTime,endTime)
-
+// console.log(sss.substring(8,10))
 var temporalID = './data/t'
 var fdpID = './data/FDP'
+var sptID = './data/spt_data'
 
-console.log("startTime"+startTime);
+// console.log("startTime"+startTime);
 
 var tFile = temporalID.concat(date_sel.toString().concat(".json"))
 var fdpFile = fdpID.concat(date_sel.toString().concat(".json"))
-
+var sptFile = sptID.concat(date_sel.toString().concat(".json"))
 
 d3.json(tFile, function(d1){
   d3.json(fdpFile, function(d2){
-    temporalFilter(d1,d2,startTime,endTime)
+    d3.json(sptFile, function(dn){
+      temporalFilter(d1,d2,dn,startTime,endTime)
+    })
+    
     
   });
 
 });
 }
 
-function temporalFilter(d1,d2,t_start,t_end){
+function temporalFilter(d1,d2,dn,t_start,t_end){
+
   var cluster_center = []
   var cluster_info = []
- var cluster_size = []
- var fdp_info = []
+  var cluster_size = []
+  var fdp_info = []
   // var cluster_data.dropoff = []
 //   console.log(d1)
-// console.log(d2)
+// console.log(dn)
   for (var i=0; i<d1.length;i++){
     
     var pickup=0
     var dropoff=0
-    var dest_num=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    var dest_num=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    var c_fare = [0,0,0,0,0,0]
+    var c_distance = [0,0,0,0,0,0]
+    var c_passenger = [0,0,0,0,0,0]
+
     
     for (var j=t_start; j<t_end;j++){
       pickup += d1[i].pickup_point[j]
       dropoff += d1[i].dropoff_point[j]
       for (var k=0; k<30;k++){
         dest_num[k] += d1[i].destination[j][k]
+        if (k<6){
+          c_fare[k] += dn[i].fare_cl[j][k] 
+          c_distance[k] += dn[i].distance_cl[j][k] 
+          c_passenger[k] += dn[i].passenger_cl[j][k] 
+        }
        
         
       }
 
     }
-    cluster_info.push({"center":d1[i].center, "size": (pickup+dropoff), "pickup":pickup, "dropoff":dropoff, "destination":dest_num})
+    cluster_info.push({"center":d1[i].center, "size": (pickup+dropoff), "pickup":pickup, "dropoff":dropoff, "destination":dest_num, "fare":c_fare, "distance":c_distance, "passenger":c_passenger})
     cluster_size.push(pickup+dropoff)
     
   }
 
   var rmax=d3.max(cluster_size)
-  console.log("this")
-  console.log(rmax)
+  // console.log("this")
+  // console.log(rmax)
   for (var i=0;i<cluster_info.length;i++){
     cluster_info[i].size = (cluster_info[i].size)/rmax
   }

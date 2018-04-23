@@ -54,6 +54,7 @@ query3.on("click",function(){
 //draw_lines();
 //location.href="./index.html";
 svg.remove();
+reset_chart();
 //load_data();
 
 });
@@ -107,11 +108,7 @@ layout = svg.selectAll(".circle")
 circles= layout .enter()
         .append("circle")
         .attr("class", "circle")
-        .attr("r", function(d){
-        //  console.log(d.size)
-          return d.size;
-        })
-        .attr("fill", "#ff3333");
+        .attr("fill", "#3F3FBF");
 //             // Call the update function
         update();
         map.on("viewreset", update);
@@ -189,6 +186,10 @@ if(count==0)
         
         circles.attr("cx", function(d,i) { return project(d.center).x;})
                .attr("cy", function(d,i) { return project(d.center).y;})
+               .attr("r", function(d){
+          //console.log(map.getZoom())
+          return d.size*30;
+        });
              //     .on("click",function(d){start[0]= d[0] ; start[1]=d[1]; var temp= [project(d).x,project(d).y]; interpolate.push(temp); });
         }
 
@@ -266,9 +267,10 @@ function temporalFilter(d1,d2,t_start,t_end){
   }
 
   var rmax=d3.max(cluster_size)
- // console.log(rmax)
+  console.log("this")
+  console.log(rmax)
   for (var i=0;i<cluster_info.length;i++){
-    cluster_info[i].size = (cluster_info[i].size*20)/rmax
+    cluster_info[i].size = (cluster_info[i].size)/rmax
   }
 
   drawData(cluster_info);

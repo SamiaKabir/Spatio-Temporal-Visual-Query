@@ -14,6 +14,7 @@ stroke: #e55e5e;
 stroke-width: 0;
 cursor: pointer;
 transition: 0.5s fill, 0.5s stroke-width;
+opacity:0.7;
 }
 
 circle:hover {
@@ -86,9 +87,70 @@ circle:hover {
    height: 100%;
    border: solid #4d4d4d;
    border-width: 2px;
-   margin-top:10px;
+   margin-top:10px; 
+}
 
-  
+#chart1{
+width:98%;
+height:32.5%;
+border-style: solid;
+border-width: 1px;
+border-radius: 5px;
+margin-top:2px;
+margin-left:1%;
+
+}
+
+#chart2{
+width:98%;
+height:32.5%;
+border-style: solid;
+border-width: 1px;
+border-radius: 5px;
+margin-top:1px;
+margin-left:1%;
+
+}
+
+#chart3{
+width:98%;
+height:32.5%;
+border-style: solid;
+border-width: 1px;
+border-radius: 5px;
+margin-top:1px;
+margin-left:1%;
+
+}
+
+
+
+
+#fare{
+width:100%;
+height:87%;
+background-color: #b3ffff;
+/*border-radius:5px;*/
+}
+
+#distance{
+width:100%;
+height:87%;
+background-color: #b3ffff;
+border-radius:5px;
+}
+
+#passenger{
+width:100%;
+height:87%;
+background-color: #b3ffff;
+border-radius:5px;
+}
+
+#chart_title{
+
+  background-color: white;
+  margin-bottom: 0px;
 }
 
 #panel{

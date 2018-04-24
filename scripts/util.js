@@ -1,10 +1,5 @@
 
 
-
-
-
-
-
 var svg1;
 var svg2;
 var svg3;
@@ -242,7 +237,7 @@ console.log(chart_data3);
     .enter()
     .append("rect")
     .attr("class","rect")
-    .style("fill","#871CF1")
+    .style("fill","#cc6699")
     .attr("stroke", "black")
     .attr("stroke-width", 1)
     .attr("x",function(d){ return d.x})

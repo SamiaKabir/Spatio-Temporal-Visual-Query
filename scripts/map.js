@@ -59,6 +59,29 @@ reset_chart();
 
 });
 
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+// function displaymodal(index) {
+    
+// }
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
 
         // Load map and dataset
 
@@ -189,6 +212,19 @@ if(count==0)
                .attr("r", function(d){
           //console.log(map.getZoom())
           return d.size*30;
+        })
+        .on("click",function(d){
+
+
+            pick_drop(d.pickup,d.dropoff);
+            fare(d.fare);
+            distance(d.distance);
+            passenger(d.passenger);
+
+            modal.style.display = "block"; 
+
+
+
         });
              //     .on("click",function(d){start[0]= d[0] ; start[1]=d[1]; var temp= [project(d).x,project(d).y]; interpolate.push(temp); });
         }

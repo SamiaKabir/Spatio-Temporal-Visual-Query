@@ -286,3 +286,9 @@ border-radius:5px;
 .arc path {
   stroke: #fff;
 }
+
+.legend {
+  float: left;
+  font-family: "Verdana";
+  font-size: .7em;
+}

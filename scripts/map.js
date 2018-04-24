@@ -111,6 +111,7 @@ var start=[];
 var end=[];
 var Zoom=12;
 var count=0;
+var flag=0;
 
 
 
@@ -215,11 +216,21 @@ if(count==0)
         })
         .on("click",function(d){
 
+           
+
+            if(flag>0)
+            {
+              
+            reset_allchart();
+            }
+
 
             pick_drop(d.pickup,d.dropoff);
             fare(d.fare);
             distance(d.distance);
             passenger(d.passenger);
+
+            flag++;
 
             modal.style.display = "block"; 
 

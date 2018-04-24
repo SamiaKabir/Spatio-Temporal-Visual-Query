@@ -86,7 +86,7 @@ var xAxisGroup = svg1.append("g")
 
     //Create the Scale we will use for the Axis
 var axisScale_y = d3.scaleBand()
-                        .domain([max/2,max/4,max/8])
+                        .domain([3*max/4,max/2,max/4])
                         .rangeRound([0,height]);
 
 //Create the Axis
@@ -174,7 +174,7 @@ var xAxisGroup2 = svg2.append("g")
 
     //Create the Scale we will use for the Axis
 var axisScale_y2 = d3.scaleBand()
-                        .domain([max/2,max/4,max/8])
+                        .domain([3*max/4,max/2,max/4])
                         .rangeRound([0,height]);
 
 //Create the Axis
@@ -264,7 +264,7 @@ var xAxisGroup3 = svg3.append("g")
 
     //Create the Scale we will use for the Axis
 var axisScale_y3 = d3.scaleBand()
-                        .domain([max/2,max/4,max/8])
+                        .domain([3*max/4,max/2,max/4])
                         .rangeRound([0,height]);
 
 //Create the Axis

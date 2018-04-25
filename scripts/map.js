@@ -112,6 +112,7 @@ var end=[];
 var Zoom=12;
 var count=0;
 var flag=0;
+var flag2=0;
 
 
 
@@ -134,25 +135,12 @@ circles= layout .enter()
         .attr("class", "circle")
         .attr("fill", "#3F3FBF");
 //             // Call the update function
-        update();
+        update(data);
         map.on("viewreset", update);
         map.on("move",      update);
         map.on("moveend",   update);
 
-// var paths;
 
-
-// for(var i=0; i<data1.length; i++)
-// {
-
-//           svg.append("line")
-//          .attr("x1", project(data1[i]).x)
-//          .attr("y1", project(data1[i]).y)
-//          .attr("x2", project(data2[i]).x)
-//          .attr("y2", project(data2[i]).y)
-//          .attr("stroke-width", 2)
-//          .attr("stroke", "black");
-// }
 
 
 
@@ -203,8 +191,12 @@ if(count==0)
 
  
         // Update d3 shapes' positions to the map's current state
-        function update() {
+        function update(data) {
             console.log("update");
+
+            var paths;
+            var paths_all;
+            var path_data;
         
        // console.log(project(d).x);
         
@@ -212,7 +204,7 @@ if(count==0)
                .attr("cy", function(d,i) { return project(d.center).y;})
                .attr("r", function(d){
           //console.log(map.getZoom())
-          return d.size*30;
+          return d.size*25;
         })
         .on("click",function(d){
 
@@ -234,11 +226,71 @@ if(count==0)
 
             modal.style.display = "block"; 
 
+            
+          //  draw_paths(d.center,d.destination,flag2);
+
+ 
+
+            if(flag2>0)
+            {
+            var s= d3.selectAll('line');
+            s.remove();
+
+            }
 
 
-        });
-             //     .on("click",function(d){start[0]= d[0] ; start[1]=d[1]; var temp= [project(d).x,project(d).y]; interpolate.push(temp); });
-        }
+          flag2++;
+          
+          path_data=[];
+
+           for(var i=0; i<data.length; i++)
+           {
+
+             var temp={};
+
+             temp.source=d.center;
+             temp.destination=data[i].center;
+
+             path_data.push(temp);
+
+           }
+
+          paths_all= svg.selectAll('.line').data(path_data);
+
+
+
+          paths= paths_all.enter()
+           .append("line")
+           .attr("class","line");
+
+           update2();
+
+        map.on("viewreset", update2);
+        map.on("move",update2);
+        map.on("moveend",   update2);
+
+
+
+
+      });
+
+
+      function update2(){
+    
+      paths.attr("x1", function(d){return project(d.source).x;})
+           .attr("y1", function(d){return project(d.source).y;})
+           .attr("x2", function(d){return project(d.destination).x;})
+           .attr("y2", function(d){return project(d.destination).y;})
+           .attr("stroke-width","1px")
+           .style("stroke-dasharray", ("10,3"))
+           .attr("stroke", "black");
+
+           update(data);
+       }
+     }
+
+
+
 
     function draw_lines(){
      var lineGenerator = d3.line()

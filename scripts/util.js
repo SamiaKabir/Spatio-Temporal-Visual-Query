@@ -42,9 +42,15 @@ function fareChart(data){
        temp.height=(data[i]/max)*(document.getElementById("fare").clientHeight-18);
        temp.x=(box_width*i);
        temp.y=(document.getElementById("fare").clientHeight-18 -temp.height);
+       temp.value=data[i];
        chart_data1.push(temp);
 
   }
+
+  // Define the div for the tooltip
+var div = d3.select("body").append("div") 
+    .attr("class", "tooltip")       
+    .style("opacity", 0);
 
 console.log(chart_data1);
    svg1= d3.select('#fare')
@@ -66,7 +72,34 @@ console.log(chart_data1);
     .attr("x",function(d){ return d.x})
     .attr("y",function(d){ return d.y})
     .attr("height",function(d){ return d.height})
-    .attr("width",function(d){ return d.width});
+    .attr("width",function(d){ return d.width})
+    .on("mouseover",function(d,i){
+      
+     d3.select(this).style("fill","orange");
+
+     var x=d.x;
+     var y=d.y;
+     var value=d.value;
+
+
+      div.transition()   
+      .duration(200)    
+      .style("opacity", .9);    
+      div .html(value + "<br/>")  
+                .style("left", (d3.event.pageX) + "px")   
+                .style("top", (d3.event.pageY - 28) + "px");  
+
+
+    })
+    .on("mouseout",function(d,i){
+
+        d3.select(this).style("fill","#C56262");
+
+        div.transition()    
+           .duration(500)    
+            .style("opacity", 0); 
+
+    });
 
 
     //Create the Scale we will use for the Axis
@@ -128,9 +161,14 @@ console.log(data)
        temp.height=(data[i]/max)*(document.getElementById("fare").clientHeight-18);
        temp.x=(box_width*i)+1;
        temp.y=(document.getElementById("distance").clientHeight-18 -temp.height);
+       temp.value=data[i];
        chart_data2.push(temp);
 
   }
+    // Define the div for the tooltip
+var div = d3.select("body").append("div") 
+    .attr("class", "tooltip")       
+    .style("opacity", 0);
 
 console.log(chart_data2);
    svg2= d3.select('#distance')
@@ -152,7 +190,32 @@ console.log(chart_data2);
     .attr("x",function(d){ return d.x})
     .attr("y",function(d){ return d.y})
     .attr("height",function(d){ return d.height})
-    .attr("width",function(d){ return d.width});
+    .attr("width",function(d){ return d.width})
+    .on("mouseover",function(d){
+      
+     d3.select(this).style("fill","orange");
+
+     var x=d.x;
+     var y=d.y;
+     var value=d.value;
+
+
+      div.transition()   
+      .duration(200)    
+      .style("opacity", .9);    
+      div .html(value + "<br/>")  
+                .style("left", (d3.event.pageX) + "px")   
+                .style("top", (d3.event.pageY - 28) + "px");  
+    })
+    .on("mouseout",function(d){
+              
+        d3.select(this).style("fill","#93C562");
+
+        div.transition()    
+           .duration(500)    
+            .style("opacity", 0); 
+
+    });
 
 
 
@@ -217,9 +280,15 @@ function passengerChart(data){
        temp.height=(data[i]/max)*(document.getElementById("passenger").clientHeight-18);
        temp.x=(box_width*i);
        temp.y=(document.getElementById("fare").clientHeight-18 -temp.height);
+       temp.value=data[i];
        chart_data3.push(temp);
 
   }
+
+    // Define the div for the tooltip
+var div = d3.select("body").append("div") 
+    .attr("class", "tooltip")       
+    .style("opacity", 0);
 
 console.log(chart_data3);
    svg3= d3.select('#passenger')
@@ -243,7 +312,33 @@ console.log(chart_data3);
     .attr("x",function(d){ return d.x})
     .attr("y",function(d){ return d.y})
     .attr("height",function(d){ return d.height})
-    .attr("width",function(d){ return d.width});
+    .attr("width",function(d){ return d.width})
+    .on("mouseover",function(d){
+      
+     d3.select(this).style("fill","orange");
+
+     var x=d.x;
+     var y=d.y;
+     var value=d.value;
+
+
+      div.transition()   
+      .duration(200)    
+      .style("opacity", .9);    
+      div .html(value + "<br/>")  
+                .style("left", (d3.event.pageX) + "px")   
+                .style("top", (d3.event.pageY - 28) + "px");  
+    })
+    .on("mouseout",function(d){
+
+
+            d3.select(this).style("fill","#cc6699");
+
+            div.transition()    
+           .duration(500)    
+            .style("opacity", 0); 
+
+    });
 
         //Create the Scale we will use for the Axis
 var axisScale3 = d3.scalePoint()

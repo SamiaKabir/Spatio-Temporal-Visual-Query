@@ -87,9 +87,15 @@ function fare(data){
        temp.height=(data[i]/max)*(250-18);
        temp.x=(box_width*i);
        temp.y=(250-18 -temp.height);
+       temp.value=data[i];
        chart_data1.push(temp);
 
   }
+
+    // Define the div for the tooltip
+var div = d3.select("body").append("div") 
+    .attr("class", "tooltip")       
+    .style("opacity", 0);
 
 console.log(chart_data1);
    chart2= d3.select('#modal_fare')
@@ -111,7 +117,35 @@ console.log(chart_data1);
     .attr("x",function(d){ return d.x})
     .attr("y",function(d){ return d.y})
     .attr("height",function(d){ return d.height})
-    .attr("width",function(d){ return d.width});
+    .attr("width",function(d){ return d.width})
+     .on("mouseover",function(d,i){
+      
+     d3.select(this).style("fill","orange");
+
+     var x=d.x;
+     var y=d.y;
+     var value=d.value;
+
+
+      div.transition()   
+      .duration(200)    
+      .style("opacity", .9);    
+      div .html(value + "<br/>")  
+                .style("left", (d3.event.pageX) + "px")   
+                .style("top", (d3.event.pageY - 28) + "px");  
+
+
+    })
+    .on("mouseout",function(d,i){
+
+        d3.select(this).style("fill","#C56262");
+
+        div.transition()    
+           .duration(500)    
+            .style("opacity", 0); 
+
+    });
+
 
 
     //Create the Scale we will use for the Axis
@@ -173,9 +207,15 @@ console.log(data)
        temp.height=(data[i]/max)*(height);
        temp.x=(box_width*i)+1;
        temp.y=(height-temp.height);
+       temp.value=data[i];
        chart_data2.push(temp);
 
   }
+
+    // Define the div for the tooltip
+var div = d3.select("body").append("div") 
+    .attr("class", "tooltip")       
+    .style("opacity", 0);
 
 console.log(chart_data2);
    chart3= d3.select('#modal_distance')
@@ -197,7 +237,35 @@ console.log(chart_data2);
     .attr("x",function(d){ return d.x})
     .attr("y",function(d){ return d.y})
     .attr("height",function(d){ return d.height})
-    .attr("width",function(d){ return d.width});
+    .attr("width",function(d){ return d.width})
+     .on("mouseover",function(d,i){
+      
+     d3.select(this).style("fill","orange");
+
+     var x=d.x;
+     var y=d.y;
+     var value=d.value;
+
+
+      div.transition()   
+      .duration(200)    
+      .style("opacity", .9);    
+      div .html(value + "<br/>")  
+                .style("left", (d3.event.pageX) + "px")   
+                .style("top", (d3.event.pageY - 28) + "px");  
+
+
+    })
+    .on("mouseout",function(d,i){
+
+        d3.select(this).style("fill","#93C562");
+
+        div.transition()    
+           .duration(500)    
+            .style("opacity", 0); 
+
+    });
+
 
 
 
@@ -262,9 +330,15 @@ function passenger(data){
        temp.height=(data[i]/max)*(height);
        temp.x=(box_width*i);
        temp.y=(height -temp.height);
+       temp.value=data[i];
        chart_data3.push(temp);
 
   }
+
+    // Define the div for the tooltip
+var div = d3.select("body").append("div") 
+    .attr("class", "tooltip")       
+    .style("opacity", 0);
 
 console.log(chart_data3);
    chart4= d3.select('#modal_passenger')
@@ -288,7 +362,35 @@ console.log(chart_data3);
     .attr("x",function(d){ return d.x})
     .attr("y",function(d){ return d.y})
     .attr("height",function(d){ return d.height})
-    .attr("width",function(d){ return d.width});
+    .attr("width",function(d){ return d.width})
+     .on("mouseover",function(d,i){
+      
+     d3.select(this).style("fill","orange");
+
+     var x=d.x;
+     var y=d.y;
+     var value=d.value;
+
+
+      div.transition()   
+      .duration(200)    
+      .style("opacity", .9);    
+      div .html(value + "<br/>")  
+                .style("left", (d3.event.pageX) + "px")   
+                .style("top", (d3.event.pageY - 28) + "px");  
+
+
+    })
+    .on("mouseout",function(d,i){
+
+        d3.select(this).style("fill","#cc6699");
+
+        div.transition()    
+           .duration(500)    
+            .style("opacity", 0); 
+
+    });
+
 
         //Create the Scale we will use for the Axis
 var axisScale3 = d3.scalePoint()

@@ -231,43 +231,45 @@ if(count==0)
 
  
 
-            if(flag2>0)
-            {
-            var s= d3.selectAll('line');
-            s.remove();
+        //     if(flag2>0)
+        //     {
+        //     var s= d3.selectAll('line');
+        //     s.remove();
 
-            }
+        //     }
 
 
-          flag2++;
+        //   flag2++;
           
-          path_data=[];
+        //   path_data=[];
 
-           for(var i=0; i<data.length; i++)
-           {
+        //    for(var i=0; i<data.length; i++)
+        //    {
 
-             var temp={};
+        //      var temp={};
+        //      var color= d.destination[i]*2;
 
-             temp.source=d.center;
-             temp.destination=data[i].center;
+        //      temp.source=d.center;
+        //      temp.destination=data[i].center;
+        //      temp.color=d3.hsl(color,0,color);
 
-             path_data.push(temp);
+        //      path_data.push(temp);
 
-           }
+        //    }
 
-          paths_all= svg.selectAll('.line').data(path_data);
+        //   paths_all= svg.selectAll('.line').data(path_data);
 
 
 
-          paths= paths_all.enter()
-           .append("line")
-           .attr("class","line");
+        //   paths= paths_all.enter()
+        //    .append("line")
+        //    .attr("class","line");
 
-           update2();
+        //    update2();
 
-        map.on("viewreset", update2);
-        map.on("move",update2);
-        map.on("moveend",   update2);
+        // map.on("viewreset", update2);
+        // map.on("move",update2);
+        // map.on("moveend",   update2);
 
 
 
@@ -275,18 +277,18 @@ if(count==0)
       });
 
 
-      function update2(){
+      // function update2(){
     
-      paths.attr("x1", function(d){return project(d.source).x;})
-           .attr("y1", function(d){return project(d.source).y;})
-           .attr("x2", function(d){return project(d.destination).x;})
-           .attr("y2", function(d){return project(d.destination).y;})
-           .attr("stroke-width","1px")
-           .style("stroke-dasharray", ("10,3"))
-           .attr("stroke", "black");
+      // paths.attr("x1", function(d){return project(d.source).x;})
+      //      .attr("y1", function(d){return project(d.source).y;})
+      //      .attr("x2", function(d){return project(d.destination).x;})
+      //      .attr("y2", function(d){return project(d.destination).y;})
+      //      .attr("stroke-width","1px")
+      //      .style("stroke-dasharray", ("10,3"))
+      //      .attr("stroke", function(d){return d.color});
 
-           update(data);
-       }
+      //      update(data);
+      //  }
      }
 
 

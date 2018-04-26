@@ -227,7 +227,6 @@ if(count==0)
             modal.style.display = "block"; 
 
             
-          //  draw_paths(d.center,d.destination,flag2);
 
  
 
@@ -285,7 +284,7 @@ if(count==0)
       //      .attr("y2", function(d){return project(d.destination).y;})
       //      .attr("stroke-width","1px")
       //      .style("stroke-dasharray", ("10,3"))
-      //      .attr("stroke", function(d){return d.color});
+      //      .attr("stroke", "black");
 
       //      update(data);
       //  }
